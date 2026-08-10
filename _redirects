@@ -1,0 +1,5 @@
+https://admin.lava-rapido-vt.com.br/  /admin.html  200
+https://login.lava-rapido-vt.com.br/  /login.html  200
+
+https://admin.lava-rapido-vt.com.br/login.html  https://login.lava-rapido-vt.com.br/  301
+https://login.lava-rapido-vt.com.br/admin.html  https://admin.lava-rapido-vt.com.br/  301
