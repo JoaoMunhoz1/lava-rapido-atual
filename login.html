@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Login Administrativo — Lava Rápido</title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="login.css"
+    >
+</head>
+
+<body>
+
+    <main class="login-page">
+
+        <section class="login-card">
+
+            <span class="eyebrow">
+                ADMINISTRAÇÃO
+            </span>
+
+            <h1>
+                Entrar no painel
+            </h1>
+
+            <p class="subtitle">
+                Use sua conta de administrador.
+            </p>
+
+            <form id="loginForm">
+
+                <div class="field">
+
+                    <label for="email">
+                        E-mail
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        autocomplete="email"
+                        placeholder="seu@email.com"
+                        required
+                    >
+
+                </div>
+
+                <div class="field">
+
+                    <label for="password">
+                        Senha
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        autocomplete="current-password"
+                        placeholder="Sua senha"
+                        required
+                    >
+
+                </div>
+
+                <div
+                    id="loginMessage"
+                    class="login-message"
+                ></div>
+
+                <button
+                    type="submit"
+                    id="loginBtn"
+                >
+                    Entrar
+                </button>
+
+                <button
+                    type="button"
+                    id="forgotPasswordBtn"
+                    class="forgot-password-btn"
+                >
+                    Esqueci minha senha
+                </button>
+
+            </form>
+
+            <a
+                href="index.html"
+                class="back-link"
+            >
+                Voltar ao site
+            </a>
+
+        </section>
+
+    </main>
+
+    <!-- Biblioteca do Supabase -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+    ></script>
+
+    <!-- Nosso JavaScript do login -->
+    <script src="login.js"></script>
+
+</body>
+
+</html>

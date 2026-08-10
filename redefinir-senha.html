@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Redefinir senha — Lava Rápido
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="login.css"
+    >
+</head>
+
+<body>
+
+    <main class="login-page">
+
+        <section class="login-card">
+
+            <span class="eyebrow">
+                ADMINISTRAÇÃO
+            </span>
+
+            <h1>
+                Nova senha
+            </h1>
+
+            <p class="subtitle">
+                Digite sua nova senha de acesso.
+            </p>
+
+
+            <form id="resetForm">
+
+                <div class="field">
+
+                    <label for="newPassword">
+                        Nova senha
+                    </label>
+
+                    <input
+                        type="password"
+                        id="newPassword"
+                        autocomplete="new-password"
+                        required
+                        minlength="8"
+                        placeholder="Nova senha"
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="confirmPassword">
+                        Confirmar nova senha
+                    </label>
+
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        autocomplete="new-password"
+                        required
+                        minlength="8"
+                        placeholder="Repita a nova senha"
+                    >
+
+                </div>
+
+
+                <div
+                    id="resetMessage"
+                    class="login-message"
+                ></div>
+
+
+                <button
+                    type="submit"
+                    id="resetBtn"
+                >
+                    Alterar senha
+                </button>
+
+            </form>
+
+
+            <a
+                href="login.html"
+                class="back-link"
+            >
+                Voltar ao login
+            </a>
+
+        </section>
+
+    </main>
+
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+    ></script>
+
+    <script src="redefinir-senha.js"></script>
+
+</body>
+
+</html>

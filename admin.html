@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Painel Administrativo — Lava Rápido
+    </title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="admin.css"
+    >
+
+</head>
+
+
+<body class="admin-loading"></body>
+
+
+<header>
+
+    <div class="brand">
+        Painel do Lava Rápido
+    </div>
+
+    <span
+        class="logged-user"
+        id="loggedUser"
+    >
+        Logado como: ...
+    </span>
+
+    <a
+        class="back-link"
+        href="index.html"
+    >
+        Voltar ao site
+    </a>
+
+    <button
+        type="button"
+        class="logout-btn"
+        id="logoutBtn"
+    >
+        Sair
+    </button>
+
+</header>
+
+
+<main>
+
+
+    <!-- =========================
+         CABEÇALHO
+    ========================= -->
+
+    <section class="page-head">
+
+        <span class="eyebrow">
+            ADMINISTRAÇÃO
+        </span>
+
+        <h1>
+            Agendamentos
+        </h1>
+
+        <p>
+            Visualize e gerencie os
+            agendamentos salvos neste navegador.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         RESUMO
+    ========================= -->
+
+    <section class="summary">
+
+        <div class="summary-card">
+
+            <span>
+                Total de agendamentos
+            </span>
+
+            <strong id="totalBookings">
+                0
+            </strong>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <span>
+                Agendamentos de hoje
+            </span>
+
+            <strong id="todayBookings">
+                0
+            </strong>
+
+        </div>
+
+
+        <div
+            class="summary-card summary-card-clickable"
+            id="pendingTodayCard"
+            title="Ver pendentes de hoje"
+        >
+
+            <span>
+                Pendentes hoje
+            </span>
+
+            <strong id="pendingTodayBookings">
+                0
+            </strong>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         FILTROS
+    ========================= -->
+
+    <section class="toolbar">
+
+
+        <div class="field">
+
+            <label for="filterDate">
+                Filtrar por data
+            </label>
+
+            <input
+                type="date"
+                id="filterDate"
+            >
+
+        </div>
+
+
+        <div class="field search-field">
+
+            <label for="searchInput">
+                Buscar cliente
+            </label>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Nome, telefone, veículo..."
+            >
+
+        </div>
+
+
+        <button
+            type="button"
+            class="btn-secondary"
+            id="clearSearchBtn"
+        >
+            Limpar busca
+        </button>
+
+
+        <button
+            type="button"
+            class="btn-primary"
+            id="filterBtn"
+        >
+            Aplicar filtro
+        </button>
+
+
+        <button
+            type="button"
+            class="btn-secondary"
+            id="todayBtn"
+        >
+            Hoje
+        </button>
+
+
+        <button
+            type="button"
+            class="btn-secondary"
+            id="tomorrowBtn"
+        >
+            Amanhã
+        </button>
+
+
+        <button
+            type="button"
+            class="btn-secondary"
+            id="clearFilterBtn"
+        >
+            Mostrar todos
+        </button>
+
+
+        <button
+            type="button"
+            class="btn-secondary"
+            id="refreshBtn"
+        >
+            Atualizar
+        </button>
+
+
+        <div class="status-filter">
+
+            <button
+                type="button"
+                class="status-btn active"
+                data-status="all"
+            >
+                Todos
+            </button>
+
+
+            <button
+                type="button"
+                class="status-btn"
+                data-status="pending"
+            >
+                Pendentes
+            </button>
+
+
+            <button
+                type="button"
+                class="status-btn"
+                data-status="completed"
+            >
+                Concluídos
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         RESULTADOS
+    ========================= -->
+
+    <div class="results-info">
+
+        <span id="resultsCount">
+            0 agendamentos exibidos
+        </span>
+
+    </div>
+
+
+    <!-- =========================
+         AGENDA
+    ========================= -->
+
+    <section
+        id="agenda"
+        class="agenda"
+    ></section>
+
+
+    <!-- =========================
+         EDITAR AGENDAMENTO
+    ========================= -->
+
+    <div
+        class="edit-modal"
+        id="editModal"
+    >
+
+        <div
+            class="edit-overlay"
+            id="editOverlay"
+        ></div>
+
+
+        <div class="edit-card">
+
+            <div class="edit-header">
+
+                <div>
+
+                    <span class="eyebrow">
+                        EDITAR
+                    </span>
+
+                    <h2>
+                        Alterar agendamento
+                    </h2>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="edit-close"
+                    id="editCloseBtn"
+                    aria-label="Fechar"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <div class="edit-form">
+
+
+                <div class="edit-field">
+
+                    <label for="editName">
+                        Nome
+                    </label>
+
+                    <input
+                        type="text"
+                        id="editName"
+                    >
+
+                </div>
+
+
+                <div class="edit-field">
+
+                    <label for="editPhone">
+                        Telefone
+                    </label>
+
+                    <input
+                        type="text"
+                        id="editPhone"
+                    >
+
+                </div>
+
+
+                <div class="edit-field">
+
+                    <label for="editVehicle">
+                        Veículo / Modelo
+                    </label>
+
+                    <input
+                        type="text"
+                        id="editVehicle"
+                        placeholder="Ex: Honda Civic, HB20, CG 160"
+                    >
+
+                </div>
+
+
+                <div class="edit-field">
+
+                    <label for="editNotes">
+                        Observações
+                    </label>
+
+                    <textarea
+                        id="editNotes"
+                        placeholder="Ex: não lavar o motor..."
+                    ></textarea>
+
+                </div>
+
+
+                <div class="edit-field">
+
+                    <label for="editDate">
+                        Data
+                    </label>
+
+                    <input
+                        type="date"
+                        id="editDate"
+                    >
+
+                </div>
+
+
+                <div class="edit-field">
+
+                    <label for="editService">
+                        Serviço
+                    </label>
+
+                    <select id="editService">
+
+                        <option value="Lavagem Moto">
+                            Lavagem Moto
+                        </option>
+
+                        <option value="Lavagem Simples">
+                            Lavagem Simples
+                        </option>
+
+                        <option value="Lavagem Completa">
+                            Lavagem Completa
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="edit-field">
+
+                    <label for="editTime">
+                        Horário
+                    </label>
+
+                    <select id="editTime">
+
+                        <option value="13:00">13:00</option>
+                        <option value="14:00">14:00</option>
+                        <option value="15:00">15:00</option>
+                        <option value="16:00">16:00</option>
+                        <option value="17:00">17:00</option>
+                        <option value="18:00">18:00</option>
+                        <option value="19:00">19:00</option>
+
+                    </select>
+
+                </div>
+
+
+                <div
+                    class="edit-message"
+                    id="editMessage"
+                ></div>
+
+
+                <button
+                    type="button"
+                    class="btn-primary edit-save"
+                    id="editSaveBtn"
+                >
+                    Salvar alterações
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <p class="notice">
+
+        Esta é uma versão provisória.
+        Os dados ficam no
+        <strong>localStorage</strong>,
+        então o painel mostra os agendamentos
+        armazenados neste navegador.
+
+    </p>
+
+
+</main>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="admin.js"></script>
+
+</body>
+
+</html>

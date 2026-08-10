@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Lava Rápido — Agendamento
+    </title>
+
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap"
+        rel="stylesheet"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         CABEÇALHO
+    ========================= -->
+
+    <header>
+
+        <div class="logo">
+
+            <img
+                src="lava rapido vt.png"
+                alt="Lava Rápido V.T Vila Progresso"
+            >
+
+        </div>
+
+
+        <nav>
+
+            <a href="#servicos">
+                Serviços
+            </a>
+
+            <a href="#agendar">
+                Agendar
+            </a>
+
+            <a href="#contato">
+                Contato
+            </a>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- =========================
+         HERO
+    ========================= -->
+
+    <div class="hero">
+
+        <div class="hero-content">
+
+            <span class="eyebrow">
+                AGENDAMENTO ONLINE
+            </span>
+
+
+            <h1>
+                Seu carro limpo,
+                <br>
+                Seu horário garantido.
+            </h1>
+
+
+            <p>
+                Escolha o serviço,
+                selecione um horário disponível
+                e faça seu agendamento
+                em poucos minutos.
+            </p>
+
+
+            <a
+                href="#agendar"
+                class="btn"
+            >
+                Agendar agora
+            </a>
+
+        </div>
+
+
+        <svg
+            class="wave"
+            viewBox="0 0 1440 80"
+            xmlns="http://www.w3.org/2000/svg"
+            preserveAspectRatio="none"
+            style="height:70px;"
+        >
+
+            <path
+                fill="#F7FAFC"
+                d="M0,40 C240,90 480,0 720,30 C960,60 1200,10 1440,40 L1440,80 L0,80 Z"
+            ></path>
+
+        </svg>
+
+    </div>
+
+
+
+    <main>
+
+
+        <!-- =========================
+             SERVIÇOS
+        ========================= -->
+
+        <section id="servicos">
+
+            <div class="section-head">
+
+                <span class="eyebrow-dark">
+                    SERVIÇOS
+                </span>
+
+
+                <h2>
+                    Escolha a lavagem
+                </h2>
+
+            </div>
+
+
+            <div
+                class="services"
+                id="services"
+            ></div>
+
+
+            <div
+                id="selectedServiceMsg"
+                class="selected-service-msg"
+            ></div>
+
+        </section>
+
+
+
+        <!-- =========================
+             AGENDAMENTO
+        ========================= -->
+
+        <section id="agendar">
+
+            <div class="section-head">
+
+                <span class="eyebrow-dark">
+                    HORÁRIOS
+                </span>
+
+
+                <h2>
+                    Escolha data e horário
+                </h2>
+
+            </div>
+
+
+
+            <div class="booking-panel">
+
+
+                <!-- =========================
+                     FORMULÁRIO
+                ========================= -->
+
+                <div>
+
+
+                    <label>
+                        Data do agendamento
+                    </label>
+
+
+                    <button
+                        type="button"
+                        id="openCalendarBtn"
+                        class="calendar-trigger"
+                    >
+
+                        <span id="calendarTriggerText">
+                            Escolher data
+                        </span>
+
+
+                        <span class="calendar-trigger-icon">
+                            📅
+                        </span>
+
+                    </button>
+
+
+                    <input
+                        type="hidden"
+                        id="date"
+                    >
+
+
+
+                    <label>
+                        Horário disponível
+                    </label>
+
+
+                    <div
+                        class="slots"
+                        id="slots"
+                    ></div>
+
+
+
+                    <label for="name">
+                        Nome
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Seu nome"
+                    >
+
+
+
+                    <label for="phone">
+                        Telefone
+                    </label>
+
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        placeholder="(00) 00000-0000"
+                    >
+
+
+
+                    <label for="vehicle">
+                        Veículo / Modelo
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="vehicle"
+                        placeholder="Ex: Honda Civic, HB20, CG 160"
+                    >
+
+                    <label for="notes">
+                      Observações
+                    </label>
+
+                    <textarea
+                      id="notes"
+                      placeholder="Ex: não lavar o motor, tem cadeirinha, atenção no porta-malas..."
+                    ></textarea>
+
+                    <div
+                        class="msg"
+                        id="formMsg"
+                    ></div>
+
+
+
+                    <button
+                        type="button"
+                        class="btn"
+                        id="confirmBtn"
+                        style="width:100%;"
+                    >
+                        Confirmar agendamento
+                    </button>
+
+
+
+                    <!-- =========================
+                         COMPROVANTE
+                    ========================= -->
+
+                    <div
+                        class="ticket"
+                        id="ticket"
+                    >
+
+                        <h3>
+                            ✓ Agendamento confirmado
+                        </h3>
+
+
+
+                        <div class="ticket-row">
+
+                            <span>
+                                Serviço
+                            </span>
+
+                            <span
+                                id="tService"
+                                class="mono"
+                            ></span>
+
+                        </div>
+
+
+
+                        <div class="ticket-row">
+
+                            <span>
+                                Data
+                            </span>
+
+                            <span
+                                id="tDate"
+                                class="mono"
+                            ></span>
+
+                        </div>
+
+
+
+                        <div class="ticket-row">
+
+                            <span>
+                                Horário
+                            </span>
+
+                            <span
+                                id="tTime"
+                                class="mono"
+                            ></span>
+
+                        </div>
+
+
+
+                        <div class="ticket-row">
+
+                            <span>
+                                Nome
+                            </span>
+
+                            <span
+                                id="tName"
+                                class="mono"
+                            ></span>
+
+                        </div>
+
+
+
+                        <div class="ticket-row">
+
+                            <span>
+                                Telefone
+                            </span>
+
+                            <span
+                                id="tPhone"
+                                class="mono"
+                            ></span>
+
+                        </div>
+
+
+
+                        <div class="ticket-row">
+
+                            <span>
+                                Veículo
+                            </span>
+
+                            <span
+                                id="tVehicle"
+                                class="mono"
+                            ></span>
+
+                        </div>
+
+                        <div class="ticket-row">
+                          <span>Observações</span>
+                          <span id="tNotes" class="mono"></span>
+                        </div>
+
+                        <p class="ticket-note">
+
+                            Guarde este comprovante.
+                            Caso precise alterar ou cancelar,
+                            entre em contato.
+
+                        </p>
+
+
+
+                        <a
+                            href="#"
+                            class="btn ticket-whatsapp"
+                            id="customerWhatsAppBtn"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Falar no WhatsApp
+                        </a>
+
+
+
+                        <button
+                            type="button"
+                            class="btn"
+                            id="newBookingBtn"
+                        >
+                            Fazer novo agendamento
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =========================
+                     AGENDA DO DIA
+                ========================= -->
+
+                <div>
+
+                    <label>
+                        Agenda do dia
+                    </label>
+
+
+                    <div
+                        class="agenda-list"
+                        id="agendaList"
+                    ></div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =========================
+         CALENDÁRIO
+    ========================= -->
+
+    <div
+        id="calendarModal"
+        class="calendar-modal"
+        aria-hidden="true"
+    >
+
+
+        <div
+            class="calendar-overlay"
+            id="calendarOverlay"
+        ></div>
+
+
+
+        <div
+            class="calendar-card"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="calendarTitle"
+        >
+
+
+            <div class="calendar-top">
+
+
+                <div>
+
+                    <span class="eyebrow-dark">
+                        ESCOLHA A DATA
+                    </span>
+
+
+                    <h3 id="calendarTitle">
+                        Próximos 30 dias
+                    </h3>
+
+                </div>
+
+
+
+                <button
+                    type="button"
+                    id="closeCalendarBtn"
+                    class="calendar-close"
+                    aria-label="Fechar calendário"
+                >
+                    ×
+                </button>
+
+
+            </div>
+
+
+
+            <div class="calendar-weekdays">
+
+                <span>SEG</span>
+                <span>TER</span>
+                <span>QUA</span>
+                <span>QUI</span>
+                <span>SEX</span>
+                <span>SÁB</span>
+                <span>DOM</span>
+
+            </div>
+
+
+
+            <div
+                id="calendarDays"
+                class="calendar-days"
+            ></div>
+
+
+
+            <p class="calendar-note">
+
+                Atendemos de segunda a sábado,
+                das 13:00 às 19:00.
+
+            </p>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         RODAPÉ
+    ========================= -->
+
+    <footer id="contato">
+
+        Segunda a Sábado:
+        13:00 às 19:00
+        ·
+        (18) 99768-3525
+
+        <br>
+
+        Endereço: Rua Londrina, 775, Vila Jardim Paraná.
+
+    </footer>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="script.js"></script>
+
+
+</body>
+
+</html>
